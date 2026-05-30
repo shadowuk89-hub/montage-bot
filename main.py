@@ -7,7 +7,7 @@ from aiogram import Bot, Dispatcher
 
 from handlers import router
 
-TOKEN = os.getenv("8744007590:AAELB6PD01HATPbKvTu_EMUUDVZiRcKGKuc")
+TOKEN = os.getenv "8744007590:AAELB6PD01HATPbKvTu_EMUUDVZiRcKGKuc"
 
 
 async def health(request):
