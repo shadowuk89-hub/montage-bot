@@ -3,6 +3,8 @@ from aiogram.utils.keyboard import InlineKeyboardBuilder
 
 from data import HORIZONTAL, SHOWREEL_URL, VERTICAL
 
+
+# ---------------- CALLBACKS ----------------
 CB_MAIN = "main"
 
 CB_ABOUT = "about"
@@ -47,7 +49,18 @@ def main_menu_kb():
 def about_kb():
     return InlineKeyboardMarkup(
         inline_keyboard=[
-            [InlineKeyboardButton(text="📁 Дивитись приклади робіт", callback_data=CB_WORKS)],
+            [
+                InlineKeyboardButton(
+                    text="💬 Замовити монтаж",
+                    callback_data=CB_ORDER
+                )
+            ],
+            [
+                InlineKeyboardButton(
+                    text="📁 Приклади робіт",
+                    callback_data=CB_WORKS
+                )
+            ],
             [back_main()]
         ]
     )
@@ -75,7 +88,12 @@ def works_kb():
 def order_kb():
     return InlineKeyboardMarkup(
         inline_keyboard=[
-            [InlineKeyboardButton(text="📩 Зв’язатися зі мною", url=CONTACT_URL)],
+            [
+                InlineKeyboardButton(
+                    text="📩 Зв’язатися зі мною",
+                    url=CONTACT_URL
+                )
+            ],
             [back_main()]
         ]
     )
@@ -85,7 +103,12 @@ def order_kb():
 def prices_kb():
     return InlineKeyboardMarkup(
         inline_keyboard=[
-            [InlineKeyboardButton(text="📩 Зв’язатися зі мною", url=CONTACT_URL)],
+            [
+                InlineKeyboardButton(
+                    text="📩 Зв’язатися зі мною",
+                    url=CONTACT_URL
+                )
+            ],
             [back_main()]
         ]
     )
@@ -95,7 +118,12 @@ def prices_kb():
 def showreel_kb():
     return InlineKeyboardMarkup(
         inline_keyboard=[
-            [InlineKeyboardButton(text="▶️ Дивитись шоурил", url=str(SHOWREEL_URL))],
+            [
+                InlineKeyboardButton(
+                    text="▶️ Дивитись шоурил",
+                    url=str(SHOWREEL_URL)
+                )
+            ],
             [back_main()]
         ]
     )
