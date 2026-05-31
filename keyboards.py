@@ -21,26 +21,23 @@ CONTACT_URL = "https://t.me/MN_videomaker"
 BACK = "◀️ Назад"
 
 
+# ---------------- BACK BUTTON ----------------
 def back_main():
     return InlineKeyboardButton(text=BACK, callback_data=CB_MAIN)
+
+
+def back_row():
+    return [back_main()]
 
 
 # ---------------- MAIN MENU ----------------
 def main_menu_kb():
     builder = InlineKeyboardBuilder()
 
-    builder.row(
-        InlineKeyboardButton(text="👨‍💻 Про мене", callback_data=CB_ABOUT)
-    )
-    builder.row(
-        InlineKeyboardButton(text="📁 Приклади робіт", callback_data=CB_WORKS)
-    )
-    builder.row(
-        InlineKeyboardButton(text="💰 Ціни", callback_data=CB_PRICES)
-    )
-    builder.row(
-        InlineKeyboardButton(text="📩 Як замовити монтаж", callback_data=CB_ORDER)
-    )
+    builder.row(InlineKeyboardButton(text="👨‍💻 Про мене", callback_data=CB_ABOUT))
+    builder.row(InlineKeyboardButton(text="📁 Приклади робіт", callback_data=CB_WORKS))
+    builder.row(InlineKeyboardButton(text="💰 Ціни", callback_data=CB_PRICES))
+    builder.row(InlineKeyboardButton(text="📩 Як замовити монтаж", callback_data=CB_ORDER))
 
     return builder.as_markup()
 
@@ -49,52 +46,31 @@ def main_menu_kb():
 def about_kb():
     return InlineKeyboardMarkup(
         inline_keyboard=[
-            [
-                InlineKeyboardButton(
-                    text="💬 Замовити монтаж",
-                    callback_data=CB_ORDER
-                )
-            ],
-            [
-                InlineKeyboardButton(
-                    text="📁 Приклади робіт",
-                    callback_data=CB_WORKS
-                )
-            ],
-            [back_main()]
+            [InlineKeyboardButton(text="💬 Замовити монтаж", callback_data=CB_ORDER)],
+            [InlineKeyboardButton(text="📁 Приклади робіт", callback_data=CB_WORKS)],
+            back_row()
         ]
     )
 
 
-# ---------------- WORKS MENU ----------------
+# ---------------- WORKS ----------------
 def works_kb():
-    builder = InlineKeyboardBuilder()
-
-    builder.row(
-        InlineKeyboardButton(text="📱 Вертикальні відео", callback_data=CB_VERTICAL)
+    return InlineKeyboardMarkup(
+        inline_keyboard=[
+            [InlineKeyboardButton(text="📱 Вертикальні відео", callback_data=CB_VERTICAL)],
+            [InlineKeyboardButton(text="📺 Горизонтальні відео", callback_data=CB_HORIZONTAL)],
+            [InlineKeyboardButton(text="🎬 Шоурил", callback_data=CB_SHOWREEL)],
+            back_row()
+        ]
     )
-    builder.row(
-        InlineKeyboardButton(text="📺 Горизонтальні відео", callback_data=CB_HORIZONTAL)
-    )
-    builder.row(
-        InlineKeyboardButton(text="🎬 Шоурил", callback_data=CB_SHOWREEL)
-    )
-    builder.row(back_main())
-
-    return builder.as_markup()
 
 
 # ---------------- ORDER ----------------
 def order_kb():
     return InlineKeyboardMarkup(
         inline_keyboard=[
-            [
-                InlineKeyboardButton(
-                    text="📩 Зв’язатися зі мною",
-                    url=CONTACT_URL
-                )
-            ],
-            [back_main()]
+            [InlineKeyboardButton(text="📩 Написати мені", url=CONTACT_URL)],
+            back_row()
         ]
     )
 
@@ -103,13 +79,8 @@ def order_kb():
 def prices_kb():
     return InlineKeyboardMarkup(
         inline_keyboard=[
-            [
-                InlineKeyboardButton(
-                    text="📩 Зв’язатися зі мною",
-                    url=CONTACT_URL
-                )
-            ],
-            [back_main()]
+            [InlineKeyboardButton(text="📩 Написати мені", url=CONTACT_URL)],
+            back_row()
         ]
     )
 
@@ -118,13 +89,8 @@ def prices_kb():
 def showreel_kb():
     return InlineKeyboardMarkup(
         inline_keyboard=[
-            [
-                InlineKeyboardButton(
-                    text="▶️ Дивитись шоурил",
-                    url=str(SHOWREEL_URL)
-                )
-            ],
-            [back_main()]
+            [InlineKeyboardButton(text="▶️ Дивитись шоурил", url=str(SHOWREEL_URL))],
+            back_row()
         ]
     )
 
@@ -149,7 +115,7 @@ def category_kb(section: str):
         for key, cat in categories.items()
     ]
 
-    rows.append([back_main()])
+    rows.append(back_row())
 
     return InlineKeyboardMarkup(inline_keyboard=rows)
 
@@ -163,6 +129,6 @@ def videos_kb(section: str, category_key: str):
         for v in videos if v.get("url")
     ]
 
-    rows.append([back_main()])
+    rows.append(back_row())
 
     return InlineKeyboardMarkup(inline_keyboard=rows)
