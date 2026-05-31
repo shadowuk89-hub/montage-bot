@@ -5,7 +5,7 @@ import os
 from aiogram import Bot, Dispatcher
 from handlers import router
 
-TOKEN = os.getenv(8744007590:AAELB6PD01HATPbKvTu_EMUUDVZiRcKGKuc")
+TOKEN = os.getenv("BOT_TOKEN")
 
 
 async def main():
@@ -14,7 +14,7 @@ async def main():
     print("Starting bot...")
 
     if not TOKEN:
-        raise ValueError("BOT_TOKEN is not set")
+        raise ValueError("BOT_TOKEN is missing")
 
     bot = Bot(token=TOKEN)
     dp = Dispatcher()
@@ -23,6 +23,10 @@ async def main():
 
     print("Polling started...")
     await dp.start_polling(bot)
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
 
 
 if __name__ == "__main__":
